@@ -12,9 +12,8 @@ start_time = datetime.now()
 
 # ฟังก์ชันสำหรับดึง user-agent จากไฟล์
 def get_user_agent():
-    with open("user-agents.txt", "r") as f:
-        user_agents = f.readlines()
-    return random.choice(user_agents).strip()
+    agents = os.getenv("USER_AGENTS", "").splitlines()
+    return random.choice(agents) if agents else "Mozilla/5.0"
 
 # ฟังก์ชันสำหรับสร้าง device ID
 def generate_device_id():
@@ -545,4 +544,5 @@ def discord_sms():
     return jsonify({"message": f"ส่ง SMS ไปที่ {phone} จำนวน {count} ครั้งสำเร็จ"})
 
 if __name__ == '__main__':
+
     app.run(debug=True, host='0.0.0.0', port=5000)
