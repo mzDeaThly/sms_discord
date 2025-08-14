@@ -4,7 +4,7 @@ import requests
 import os
 
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-API_URL = os.getenv("API_URL", "https://your-api.onrender.com/api/sms")
+API_URL = os.getenv("API_URL", "https://sms-discord.onrender.com/api/sms")
 
 class MyClient(discord.Client):
     def __init__(self):
@@ -31,3 +31,4 @@ async def sms(interaction: discord.Interaction, phone: str, count: int):
         await interaction.followup.send(f"⚠ ไม่สามารถเชื่อมต่อ API ได้: {e}")
 
 client.run(TOKEN)
+
